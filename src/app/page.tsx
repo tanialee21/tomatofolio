@@ -70,7 +70,7 @@ export default function Home() {
         <div className="px-4 py-3">
           <div className="text-xs font-bold underline mb-2">
             Skills & Languages
-            <span className="text-[10px] text-right font-normal ml-24">
+            <span className="text-[10px] text-right font-normal ml-30">
               Percentage values (%)
             </span>
           </div>
