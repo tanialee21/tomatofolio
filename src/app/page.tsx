@@ -1,6 +1,7 @@
 "use client";
 
 import { nutritionalFacts } from "@/constants";
+import TomatoGrid from "@/components/tomatoGrid";
 
 interface Section {
   label: string;
@@ -16,7 +17,12 @@ interface Skill {
 
 export default function Home() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100 pt-8 pb-8">
+    <>
+    <TomatoGrid />
+    <div
+      className="flex items-center justify-center min-h-screen pt-8 pb-8 relative z-20"
+      style={{ backgroundColor: "transparent" }}
+    >
       <div className="bg-white border-1 border-black w-full max-w-sm p-4">
         {/* Title */}
         <div className="border-b-12 border-black pb-1 -mt-4">
@@ -26,8 +32,45 @@ export default function Home() {
           >
             {nutritionalFacts.title}
           </h1>
-          <div className="text-[11px] text-center -mt-2 font-semibold underline mb-1">
-            {nutritionalFacts.description}
+          <div className="text-[12px] text-center -mt-2 mb-1 flex justify-center gap-1">
+            <span className="font-semibold">
+              {nutritionalFacts.description}
+            </span>
+            <a
+              href={nutritionalFacts.socialLinks.email}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:font-bold underline transition-all duration-200 ease-in-out"
+            >
+              Email
+            </a>
+            <span>|</span>
+            <a
+              href={nutritionalFacts.socialLinks.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:font-bold underline transition-all duration-200 ease-in-out"
+            >
+              LinkedIn
+            </a>
+            <span>|</span>
+            <a
+              href={nutritionalFacts.socialLinks.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:font-bold underline transition-all duration-200 ease-in-out"
+            >
+              GitHub
+            </a>
+            <span>|</span>
+            <a
+              href={nutritionalFacts.socialLinks.portfolio}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:font-bold underline transition-all duration-200 ease-in-out"
+            >
+              Design Portfolio
+            </a>
           </div>
         </div>
 
@@ -119,5 +162,6 @@ export default function Home() {
         </div>
       </div>
     </div>
+    </>
   );
 }

@@ -15,21 +15,15 @@
 }
 
 :root {
-  --background: #ffffff;
+  --background: #0051e6;
   --foreground: #171717;
   --font-body: "Helvetica", sans-serif;
   --font-header: "ArchivoBlack", sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: #0a0a0a;
   font-family: var(--font-body);
+  position: relative;
 }
