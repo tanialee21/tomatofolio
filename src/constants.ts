@@ -67,8 +67,11 @@ export const nutritionalFacts = {
     { label: "Java", value: "69%" },
     { label: "Python", value: "67%" },
     { label: "Javascript", value: "68%" },
+    { label: "Typescript", value: "70%" },
     { label: "SQL", value: "78%" },
-    { label: "Go", value: "0.01%" },
+    { label: "HTML/CSS", value: "67%" },
+    { label: "Adobe PS", value: "90%" },
+    { label: "Figma", value: "85%" },
     { label: "Swag", value: "100%" },
   ],
   stickers: [
