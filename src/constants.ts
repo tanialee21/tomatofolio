@@ -75,17 +75,20 @@ export const nutritionalFacts = {
     { label: "lkygbpc", 
       content: ["🍅 Tripled reach on LKYGBPC website from previous edition",
                 "🍅 1500 applications from 1200 universities around the globe",
-              ]
+              ],
+      link: "https://lkygbpc.smu.edu.sg/"
     },
     { label: "blitz", 
       content: ["🍅 Implemented real-time dashboards, improving efficiency for ops & on-ground teams",
                 "🍅 Identified & reported data anomalies, improving reliability",
-              ]
+              ],
+      link: "https://rideblitz.com/"
     },
     { label: "habitbuddy",
       content: ["🍅 Developed frontend for HabitBuddy, a habit-tracking app with Next + React",
                 "🍅 Click the sticker to view the repo!",
-              ]
+              ],
+      link: "https://github.com/FSD-CS464"
     },
     { label: "iconcamp",
       content: ["🍅 Organized orientation for over 300 local & international students",
@@ -95,7 +98,8 @@ export const nutritionalFacts = {
     { label: "signify",
       content: ["🎖️ TikTok TechJam 2024, 3rd People's Choice",
                 "🍅 A mobile app which translates sign language into text using AI",
-              ]
+              ],
+      link: "https://github.com/mattw23n/signify"
     },
   ],
   disclaimer: "*Percentage values are based on a personal opinion.",

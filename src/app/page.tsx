@@ -88,6 +88,7 @@ export default function Home() {
                 top="45%"
                 rotate={6}
                 content={nutritionalFacts.stickers[0].content}
+                href={nutritionalFacts.stickers[0].link}
               />
               <Sticker
                 src="/stickers/habitbuddy.svg"
@@ -95,6 +96,7 @@ export default function Home() {
                 top="62%"
                 rotate={-5}
                 content={nutritionalFacts.stickers[2].content}
+                href={nutritionalFacts.stickers[2].link}
               />
               <Sticker
                 src="/stickers/signify.svg"
@@ -102,6 +104,15 @@ export default function Home() {
                 top="50%"
                 rotate={-6}
                 content={nutritionalFacts.stickers[4].content}
+                href={nutritionalFacts.stickers[4].link}
+              />
+              <Sticker
+                src="/stickers/iconcamp.svg"
+                left="44%"
+                top="43%"
+                rotate={-5}
+                size={110}
+                content={nutritionalFacts.stickers[3].content}
               />
               <Sticker
                 src="/stickers/blitz.svg"
@@ -109,14 +120,7 @@ export default function Home() {
                 top="68%"
                 rotate={5}
                 content={nutritionalFacts.stickers[1].content}
-              />
-              <Sticker
-                src="/stickers/iconcamp.svg"
-                left="44%"
-                top="43%"
-                rotate={5}
-                size={110}
-                content={nutritionalFacts.stickers[3].content}
+                href={nutritionalFacts.stickers[1].link}
               />
             </>
           )}

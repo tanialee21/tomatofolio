@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Nutritional Facts - Tania Lee",
-  description: "Get your vitamins checked!",
+  title: "the Tomatofolio 🍅",
+  description: "tomatoes everywhere",
 };
 
 export default function RootLayout({
