@@ -1,6 +1,8 @@
 "use client";
 
-import TomatoField from "@/components/tomatoField";
+import dynamic from "next/dynamic";
+import Sticker from "@/components/sticker";
+// import TomatoField from "@/components/tomatoField";
 import { nutritionalFacts } from "@/constants";
 // import TomatoGrid from "@/components/tomatoGrid";
 
@@ -16,15 +18,64 @@ interface Skill {
   value: string;
 }
 
+const TomatoFieldNoSSR = dynamic(() => import("@/components/tomatoField"), {
+  ssr: false,
+});
+
 export default function Home() {
   return (
     <>
-      <TomatoField />
+      <TomatoFieldNoSSR />
+
+      {/* Stickers */}
+      <Sticker
+        src="/stickers/lkygbpc2.svg"
+        left={120}
+        top={400}
+        rotate={6}
+        content={nutritionalFacts.stickers[0].content}
+      />
+
+      <Sticker
+        src="/stickers/blitz.svg"
+        left={900}
+        top={120}
+        rotate={8}
+        content={nutritionalFacts.stickers[1].content}
+      />
+
+      <Sticker
+        src="/stickers/habitbuddy.svg"
+        left={120}
+        top={90}
+        rotate={-15}
+        content={nutritionalFacts.stickers[2].content}
+      />
+
+      <Sticker
+        src="/stickers/iconcamp.svg"
+        left={800}
+        top={360}
+        rotate={-10}
+        content={nutritionalFacts.stickers[3].content}
+      />
+
+      <Sticker
+        src="/stickers/signify.svg"
+        left={1000}
+        top={250}
+        rotate={-6}
+        content={nutritionalFacts.stickers[4].content}
+      />
+
       <div
         className="flex items-center justify-center min-h-screen pt-8 pb-8 relative z-20"
         style={{ backgroundColor: "transparent" }}
       >
-        <div className="bg-white border-1 border-black w-full max-w-sm p-4">
+        <div
+          className="bg-white border-1 border-black w-full max-w-sm p-4"
+          style={{ boxShadow: "0 10px 15px -5px rgba(0, 0, 0, 0.5)" }}
+        >
           {/* Title */}
           <div className="border-b-12 border-black pb-1 -mt-4">
             <h1

@@ -71,5 +71,32 @@ export const nutritionalFacts = {
     { label: "Go", value: "0.01%" },
     { label: "Swag", value: "100%" },
   ],
+  stickers: [
+    { label: "lkygbpc", 
+      content: ["🍅 Tripled reach on LKYGBPC website from previous edition",
+                "🍅 1500 applications from 1200 universities around the globe",
+              ]
+    },
+    { label: "blitz", 
+      content: ["🍅 Implemented real-time dashboards, improving efficiency for ops & on-ground teams",
+                "🍅 Identified & reported data anomalies, improving reliability",
+              ]
+    },
+    { label: "habitbuddy",
+      content: ["🍅 Developed frontend for HabitBuddy, a habit-tracking app with Next + React",
+                "🍅 Click the sticker to view the repo!",
+              ]
+    },
+    { label: "iconcamp",
+      content: ["🍅 Led orienttion camp for over 300 local & international students",
+                "🍅 150+ followers & 3x engagement on social platforms",
+              ]
+    },
+    { label: "signify",
+      content: ["🎖️ TikTok TechJam 2024, 3rd People's Choice",
+                "🍅 A mobile app which translates sign language into text using AI",
+              ]
+    },
+  ],
   disclaimer: "*Percentage values are based on a personal opinion.",
 };

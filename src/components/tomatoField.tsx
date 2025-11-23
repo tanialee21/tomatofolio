@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 export default function TomatoField() {
   useEffect(() => {
-    const NUM = 12;
+    const NUM = 8;
     const SIZE = 350;
     const SEP_FORCE = 0.04;
     const tomatoes: any[] = [];
