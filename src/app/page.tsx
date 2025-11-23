@@ -280,7 +280,7 @@ export default function Home() {
 
           {/* Skills */}
           <div className="px-2 py-2">
-            <div className="grid grid-cols-2 gap-x-4 sm:gap-x-12 px-1 sm:px-2">
+            <div className="grid grid-cols-2 gap-x-2 sm:gap-x-12 px-1 sm:px-2">
               {nutritionalFacts.skills.map((vitamin: Skill, index: number) => (
                 <div key={index} className="text-xs flex justify-between px-4">
                   <span>{vitamin.label}</span>
