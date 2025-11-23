@@ -147,7 +147,7 @@ export default function Home() {
           {/* Title */}
           <div className="border-b-12 border-black pb-1 -mt-4">
             <h1
-              className="text-[35px] sm:text-[35px] md:text-[42px] text-center font-header"
+              className="text-[33px] sm:text-[33px] md:text-[42px] text-center font-header"
               style={{ fontFamily: "ArchivoBlack, sans-serif" }}
             >
               {nutritionalFacts.title}
