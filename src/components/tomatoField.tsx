@@ -4,26 +4,27 @@ import { useEffect } from "react";
 
 export default function TomatoField() {
   useEffect(() => {
-    const NUM = 8;
+    const NUM = 10;
     const SIZE = 350;
     const SEP_FORCE = 0.04;
     const tomatoes: any[] = [];
 
+    let scrollY = window.scrollY;
+    const onScroll = () => (scrollY = window.scrollY);
+    window.addEventListener("scroll", onScroll);
+
+    // spawn tomatoes
     for (let i = 0; i < NUM; i++) {
       const el = document.createElement("img");
       el.src = "/tomato2.svg";
       el.style.position = "fixed";
       el.style.width = SIZE + "px";
       el.style.height = SIZE + "px";
-
-      const startY = Math.random() * (window.innerHeight - SIZE);
-
       el.style.left = Math.random() * (window.innerWidth - SIZE) + "px";
       el.style.top = Math.random() * (window.innerHeight - SIZE) + "px";
-
       el.style.pointerEvents = "none";
       el.style.zIndex = "3";
-      el.style.transition = "transform 0.08s linear";
+      el.style.transition = "transform 0.08s linear, opacity 0.4s ease";
 
       document.body.appendChild(el);
 
@@ -37,8 +38,9 @@ export default function TomatoField() {
       });
     }
 
-    // Mouse push
+    // mouse push
     const onMove = (e: MouseEvent) => {
+      if (scrollY > window.innerHeight) return;
       tomatoes.forEach((t) => {
         const cx = t.x + SIZE / 2;
         const cy = t.y + SIZE / 2;
@@ -48,9 +50,8 @@ export default function TomatoField() {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < 200) {
-          t.vx += dx * -0.03;
-          t.vy += dy * -0.03;
-
+          t.vx += dx * -0.01;
+          t.vy += dy * -0.01;
           t.rot += (Math.random() - 0.5) * 30;
         }
       });
@@ -58,10 +59,17 @@ export default function TomatoField() {
 
     window.addEventListener("mousemove", onMove);
 
-    // Main loop
+    // MAIN LOOP
     const loop = () => {
       tomatoes.forEach((t, i) => {
-        // soft separation
+        if (scrollY > window.innerHeight) {
+          t.el.style.opacity = "0"; // fade out
+          return; // freeze
+        } else {
+          t.el.style.opacity = "1"; // restore opacity
+        }
+
+        // physics
         tomatoes.forEach((o, j) => {
           if (i === j) return;
 
@@ -76,36 +84,30 @@ export default function TomatoField() {
           }
         });
 
-        // velocity & friction
         t.x += t.vx;
         t.y += t.vy;
+
         t.vx *= 0.97;
         t.vy *= 0.97;
 
-        const TOP_BOUND = -100;
-        const BOTTOM_BOUND = window.innerHeight - SIZE + 100;
         const LEFT_BOUND = -100;
         const RIGHT_BOUND = window.innerWidth - SIZE + 100;
+        const TOP_BOUND = -100;
+        const BOTTOM_BOUND = window.innerHeight - SIZE + 100;
 
-        // LEFT
+        // boundary collisions
         if (t.x < LEFT_BOUND) {
           t.x = LEFT_BOUND;
           t.vx *= -0.8;
         }
-
-        // RIGHT
         if (t.x > RIGHT_BOUND) {
           t.x = RIGHT_BOUND;
           t.vx *= -0.8;
         }
-
-        // TOP
         if (t.y < TOP_BOUND) {
           t.y = TOP_BOUND;
           t.vy *= -0.8;
         }
-
-        // BOTTOM
         if (t.y > BOTTOM_BOUND) {
           t.y = BOTTOM_BOUND;
           t.vy *= -0.8;
@@ -114,7 +116,15 @@ export default function TomatoField() {
         // update DOM
         t.el.style.left = t.x + "px";
         t.el.style.top = t.y + "px";
-        t.el.style.transform = `rotate(${t.rot}deg)`;
+
+        // scroll parallax in 1st screen h
+        const scrollLimit = window.innerHeight;
+        const effectiveScroll = Math.min(scrollY, scrollLimit);
+
+        t.el.style.transform = `
+          translateY(${effectiveScroll * -0.6}px)
+          rotate(${t.rot}deg)
+        `;
       });
 
       requestAnimationFrame(loop);
@@ -123,6 +133,7 @@ export default function TomatoField() {
     loop();
 
     return () => {
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("mousemove", onMove);
       tomatoes.forEach((t) => t.el.remove());
     };

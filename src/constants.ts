@@ -88,7 +88,7 @@ export const nutritionalFacts = {
               ]
     },
     { label: "iconcamp",
-      content: ["🍅 Led orienttion camp for over 300 local & international students",
+      content: ["🍅 Organized orientation for over 300 local & international students",
                 "🍅 150+ followers & 3x engagement on social platforms",
               ]
     },

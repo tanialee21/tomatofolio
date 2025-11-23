@@ -1,10 +1,9 @@
 "use client";
 
+import { useRef, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Sticker from "@/components/sticker";
-// import TomatoField from "@/components/tomatoField";
 import { nutritionalFacts } from "@/constants";
-// import TomatoGrid from "@/components/tomatoGrid";
 
 interface Section {
   label: string;
@@ -23,52 +22,110 @@ const TomatoFieldNoSSR = dynamic(() => import("@/components/tomatoField"), {
 });
 
 export default function Home() {
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const wrapperRef = useRef<HTMLDivElement | null>(null);
+  const [showBigTomato, setShowBigTomato] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      if (!cardRef.current) return;
+
+      const rect = cardRef.current.getBoundingClientRect();
+      const cardGone = rect.bottom < 0;
+      const topGone = window.scrollY > window.innerHeight * 0.8;
+
+      setShowBigTomato(cardGone && topGone);
+
+      // scroll-based scaling
+      const start = window.innerHeight;
+      const end = window.innerHeight * 2;
+
+      const scroll = window.scrollY;
+      const progress = Math.min(
+        Math.max((scroll - start) / (end - start), 0),
+        1
+      );
+      const scale = 0.4 + progress * 0.8;
+      if (wrapperRef.current) {
+        wrapperRef.current.style.setProperty("--t-scale", String(scale));
+      }
+    };
+
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <>
       <TomatoFieldNoSSR />
 
-      {/* Stickers */}
-      <Sticker
-        src="/stickers/lkygbpc2.svg"
-        left={120}
-        top={400}
-        rotate={6}
-        content={nutritionalFacts.stickers[0].content}
-      />
-
-      <Sticker
-        src="/stickers/blitz.svg"
-        left={900}
-        top={120}
-        rotate={8}
-        content={nutritionalFacts.stickers[1].content}
-      />
-
-      <Sticker
-        src="/stickers/habitbuddy.svg"
-        left={120}
-        top={90}
-        rotate={-15}
-        content={nutritionalFacts.stickers[2].content}
-      />
-
-      <Sticker
-        src="/stickers/iconcamp.svg"
-        left={800}
-        top={360}
-        rotate={-10}
-        content={nutritionalFacts.stickers[3].content}
-      />
-
-      <Sticker
-        src="/stickers/signify.svg"
-        left={1000}
-        top={250}
-        rotate={-6}
-        content={nutritionalFacts.stickers[4].content}
-      />
-
       <div
+        ref={wrapperRef}
+        className="fixed z-10 tomato-wrapper"
+        style={{
+          width: "clamp(300px, 120vw, 700px)",
+          height: "clamp(300px, 130vw, 700px)",
+          top: "50%",
+          left: "50%",
+          position: "fixed",
+        }}
+      >
+        <img
+          src="/tomato2.svg"
+          style={{
+            width: "100%",
+            height: "100%",
+            pointerEvents: "none",
+          }}
+        />
+
+        <div className="absolute inset-0 pointer-events-none">
+          {showBigTomato && (
+            <>
+              <Sticker
+                src="/stickers/lkygbpc2.svg"
+                left="20%"
+                top="45%"
+                rotate={6}
+                content={nutritionalFacts.stickers[0].content}
+              />
+              <Sticker
+                src="/stickers/habitbuddy.svg"
+                left="24%"
+                top="62%"
+                rotate={-5}
+                content={nutritionalFacts.stickers[2].content}
+              />
+              <Sticker
+                src="/stickers/signify.svg"
+                left="64%"
+                top="50%"
+                rotate={-6}
+                content={nutritionalFacts.stickers[4].content}
+              />
+              <Sticker
+                src="/stickers/blitz.svg"
+                left="50%"
+                top="68%"
+                rotate={5}
+                content={nutritionalFacts.stickers[1].content}
+              />
+              <Sticker
+                src="/stickers/iconcamp.svg"
+                left="44%"
+                top="43%"
+                rotate={5}
+                size={110}
+                content={nutritionalFacts.stickers[3].content}
+              />
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Card */}
+      <div
+        ref={cardRef}
         className="flex items-center justify-center min-h-screen pt-8 pb-8 relative z-20"
         style={{ backgroundColor: "transparent" }}
       >
@@ -79,15 +136,17 @@ export default function Home() {
           {/* Title */}
           <div className="border-b-12 border-black pb-1 -mt-4">
             <h1
-              className="text-[42px] text-center font-header "
+              className="text-[42px] text-center font-header"
               style={{ fontFamily: "ArchivoBlack, sans-serif" }}
             >
               {nutritionalFacts.title}
             </h1>
+
             <div className="text-[12px] text-center -mt-2 mb-1 flex justify-center gap-1">
               <span className="font-semibold">
                 {nutritionalFacts.description}
               </span>
+
               <a
                 href={nutritionalFacts.socialLinks.email}
                 target="_blank"
@@ -96,7 +155,9 @@ export default function Home() {
               >
                 Email
               </a>
+
               <span>|</span>
+
               <a
                 href={nutritionalFacts.socialLinks.linkedin}
                 target="_blank"
@@ -105,7 +166,9 @@ export default function Home() {
               >
                 LinkedIn
               </a>
+
               <span>|</span>
+
               <a
                 href={nutritionalFacts.socialLinks.github}
                 target="_blank"
@@ -114,7 +177,9 @@ export default function Home() {
               >
                 GitHub
               </a>
+
               <span>|</span>
+
               <a
                 href={nutritionalFacts.socialLinks.portfolio}
                 target="_blank"
@@ -137,14 +202,17 @@ export default function Home() {
                 {nutritionalFacts.education[0].school}
               </span>
             </div>
+
             <div className="text-xs font-bold text-right">
               {nutritionalFacts.education[0].degree}
             </div>
+
             <div className="text-xs text-right mb-1">
               {nutritionalFacts.education[0].dates}
             </div>
           </div>
 
+          {/* Work */}
           <div
             className="border-b border-black px-2 text-[16px] tracking-tight"
             style={{ fontFamily: "ArchivoBlack, sans-serif" }}
@@ -152,7 +220,6 @@ export default function Home() {
             Working Experience
           </div>
 
-          {/* Working Experience */}
           <div className="border-b-8 border-black">
             {nutritionalFacts.workingExperience.map(
               (nutrient: Section, index: number) => (
@@ -161,6 +228,7 @@ export default function Home() {
                     <span className="text-sm font-black">{nutrient.label}</span>
                     <span className="text-xs font-bold">{nutrient.date}</span>
                   </div>
+
                   <div className="flex justify-between items-start">
                     <div className="text-xs text-left">{nutrient.content}</div>
                     <div className="text-xs text-right">{nutrient.company}</div>
@@ -170,6 +238,7 @@ export default function Home() {
             )}
           </div>
 
+          {/* Activities */}
           <div
             className="border-b border-black px-2 text-[16px] tracking-tight"
             style={{ fontFamily: "ArchivoBlack, sans-serif" }}
@@ -177,7 +246,6 @@ export default function Home() {
             Activities
           </div>
 
-          {/* Activities */}
           <div className="border-b-8 border-black">
             {nutritionalFacts.activities.map(
               (nutrient: Section, index: number) => (
@@ -186,6 +254,7 @@ export default function Home() {
                     <span className="text-xs">{nutrient.date}</span>
                     <span className="text-sm font-bold">{nutrient.label}</span>
                   </div>
+
                   <div className="text-xs text-right">{nutrient.content}</div>
                 </div>
               )
@@ -206,7 +275,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Disclaimer */}
+          {/* Footer */}
           <div className="border-t border-black px-2 py-1 -mb-4">
             <p className="text-xs text-center font-semibold">
               {nutritionalFacts.disclaimer}
@@ -214,6 +283,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <section className="h-[200vh]"></section>
     </>
   );
 }

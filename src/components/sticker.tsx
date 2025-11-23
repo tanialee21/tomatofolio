@@ -2,10 +2,12 @@
 
 interface StickerProps {
   src: string;
-  left: number;
-  top: number;
+  left: number | string;
+  top: number | string;
   rotate?: number;
   content?: string[];
+  size?: string | number;
+  onTomato?: boolean;
 }
 
 export default function Sticker({
@@ -14,29 +16,46 @@ export default function Sticker({
   top,
   rotate = 0,
   content,
+  size,
 }: StickerProps) {
-
-const showOnRight = left < 70;
-
   return (
     <div
-      className="hidden lg:block fixed z-[50] group"
+      className="absolute z-[999] group"
       style={{
-        left: `${left}px`,
-        top: `${top}px`,
+        left: typeof left === "number" ? `${left}px` : left,
+        top: typeof top === "number" ? `${top}px` : top,
+        pointerEvents: "auto",
       }}
     >
       <img
         src={src}
         alt="Sticker"
-        className="w-50 pointer-events-auto drop-shadow-lg hover-scale"
-        style={{ "--rotate": `${rotate}deg` } as React.CSSProperties }
+        className="
+    drop-shadow-md 
+    transition-all 
+    duration-200
+    pointer-events-auto
+    
+    [transform-style:preserve-3d]
+    will-change-transform
+
+    hover:[rotate:8deg]
+    hover:[scale:1.06]
+  "
+        style={{
+          width:
+            typeof size === "number"
+              ? `${size}px`
+              : size || "clamp(120px, 12vw, 200px)",
+
+          transform: `rotate(${rotate}deg)`,
+        }}
       />
 
       {Array.isArray(content) && content.length > 0 ? (
-        <div className={`absolute left-1/2 -translate-x-1/2 top-[120px] -translate-y-full opacity-0 group-hover:opacity-100 drop-shadow-xl transition-all duration-200 pointer-events-none bg-[#000000] text-white shadow-xl rounded-lg border border-black py-3 px-4 w-[200px] space-y-1}`}>
+        <div className="absolute z-[1200] left-1/2 -translate-x-1/2 top-[105%] -translate-y-full opacity-0 group-hover:opacity-100 drop-shadow-xl transition-all duration-200 pointer-events-none bg-[#FFFFFF] text-black shadow-xl rounded-lg border border-black py-3 px-4 w-[150px] space-y-1">
           {content.map((line, i) => (
-            <p key={i} className="text-xs font-medium leading-tight">
+            <p key={i} className="text-[10px] font-xs leading-tight">
               {line}
             </p>
           ))}
