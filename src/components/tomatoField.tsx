@@ -48,8 +48,8 @@ export default function TomatoField() {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < 200) {
-          t.vx += dx * -0.01;
-          t.vy += dy * -0.01;
+          t.vx += dx * -0.03;
+          t.vy += dy * -0.03;
 
           t.rot += (Math.random() - 0.5) * 30;
         }
