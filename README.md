@@ -1,2 +1,2 @@
 # yummy 🍅
-portfolio developed with next.js + react + and lots of tomatoes ^_^
+desktop + mobile responsive portfolio developed with next.js + react + and lots of tomatoes ^_^
