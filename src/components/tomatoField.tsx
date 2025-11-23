@@ -4,7 +4,12 @@ import { useEffect } from "react";
 
 export default function TomatoField() {
   useEffect(() => {
-    const NUM = 10;
+    const NUM =
+      window.innerWidth < 640 // mobile
+        ? 6
+        : window.innerWidth < 1024
+        ? 10
+        : 10;
     const SIZE = 350;
     const SEP_FORCE = 0.04;
     const tomatoes: any[] = [];

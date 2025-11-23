@@ -79,13 +79,13 @@ export default function Home() {
           }}
         />
 
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0">
           {showBigTomato && (
             <>
               <Sticker
                 src="/stickers/lkygbpc2.svg"
                 left="20%"
-                top="45%"
+                top="46%"
                 rotate={6}
                 content={nutritionalFacts.stickers[0].content}
                 href={nutritionalFacts.stickers[0].link}
@@ -100,7 +100,7 @@ export default function Home() {
               />
               <Sticker
                 src="/stickers/signify.svg"
-                left="64%"
+                left="65%"
                 top="50%"
                 rotate={-6}
                 content={nutritionalFacts.stickers[4].content}
@@ -108,7 +108,7 @@ export default function Home() {
               />
               <Sticker
                 src="/stickers/iconcamp.svg"
-                left="44%"
+                left="42%"
                 top="43%"
                 rotate={-5}
                 size={110}
@@ -117,7 +117,7 @@ export default function Home() {
               <Sticker
                 src="/stickers/blitz.svg"
                 left="50%"
-                top="68%"
+                top="67%"
                 rotate={5}
                 content={nutritionalFacts.stickers[1].content}
                 href={nutritionalFacts.stickers[1].link}
@@ -130,7 +130,7 @@ export default function Home() {
       {/* Card */}
       <div
         ref={cardRef}
-        className="flex items-center justify-center min-h-screen pt-8 pb-8 relative z-20"
+        className="flex items-center justify-center min-h-screen pt-8 pb-8 relative z-20 px-6 sm:px-0"
         style={{ backgroundColor: "transparent" }}
       >
         <div
@@ -140,13 +140,13 @@ export default function Home() {
           {/* Title */}
           <div className="border-b-12 border-black pb-1 -mt-4">
             <h1
-              className="text-[42px] text-center font-header"
+              className="text-[35px] sm:text-[35px] md:text-[42px] text-center font-header"
               style={{ fontFamily: "ArchivoBlack, sans-serif" }}
             >
               {nutritionalFacts.title}
             </h1>
 
-            <div className="text-[12px] text-center -mt-2 mb-1 flex justify-center gap-1">
+            <div className="text-[11px] sm:text-[11px] md:text-[12px] text-center -mt-2 mb-1 flex justify-center gap-1">
               <span className="font-semibold">
                 {nutritionalFacts.description}
               </span>
@@ -216,9 +216,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Work */}
+          {/* Work experience*/}
           <div
-            className="border-b border-black px-2 text-[16px] tracking-tight"
+            className="border-b border-black px-2 text-[14px] sm:text-[14px] md:text-[16px] tracking-tight"
             style={{ fontFamily: "ArchivoBlack, sans-serif" }}
           >
             Working Experience
@@ -229,8 +229,8 @@ export default function Home() {
               (nutrient: Section, index: number) => (
                 <div key={index} className="border-b border-gray-400 px-2 py-1">
                   <div className="flex justify-between">
-                    <span className="text-sm font-black">{nutrient.label}</span>
-                    <span className="text-xs font-bold">{nutrient.date}</span>
+                    <span className="text-[12px] sm:text-[12px] md:text-sm font-black">{nutrient.label}</span>
+                    <span className="text-[12px] sm:text-[12px] md:text-xs font-bold">{nutrient.date}</span>
                   </div>
 
                   <div className="flex justify-between items-start">
@@ -244,7 +244,7 @@ export default function Home() {
 
           {/* Activities */}
           <div
-            className="border-b border-black px-2 text-[16px] tracking-tight"
+            className="border-b border-black px-2 text-[14px] sm:text-[14px] md:text-[16px] tracking-tight"
             style={{ fontFamily: "ArchivoBlack, sans-serif" }}
           >
             Activities
@@ -255,11 +255,9 @@ export default function Home() {
               (nutrient: Section, index: number) => (
                 <div key={index} className="border-b border-gray-400 px-2 py-1">
                   <div className="flex justify-between">
-                    <span className="text-xs">{nutrient.date}</span>
-                    <span className="text-sm font-bold">{nutrient.label}</span>
+                    <span className="text-[11px] sm:text-[11px] md:text-xs">{nutrient.date}</span>
+                    <span className="text-[11px] sm:text-[11px] md:text-sm font-bold">{nutrient.label}</span>
                   </div>
-
-                  <div className="text-xs text-right">{nutrient.content}</div>
                 </div>
               )
             )}
@@ -267,7 +265,7 @@ export default function Home() {
 
           {/* Skills */}
           <div className="px-2 py-2">
-            <div className="grid grid-cols-2 gap-x-12 px-2">
+            <div className="grid grid-cols-2 gap-x-4 sm:gap-x-12 px-1 sm:px-2">
               {nutritionalFacts.skills.map((vitamin: Skill, index: number) => (
                 <div key={index} className="text-xs flex justify-between px-4">
                   <span>{vitamin.label}</span>
@@ -281,7 +279,7 @@ export default function Home() {
 
           {/* Footer */}
           <div className="border-t border-black px-2 py-1 -mb-4">
-            <p className="text-xs text-center font-semibold">
+            <p className="text-[11px] sm:text-[11px] md:text-xs text-center font-semibold">
               {nutritionalFacts.disclaimer}
             </p>
           </div>

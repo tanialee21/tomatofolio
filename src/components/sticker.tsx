@@ -32,12 +32,17 @@ export default function Sticker({
         will-change-transform
         hover:[rotate:8deg]
         hover:[scale:1.06]
+
+        w-[90px]
+        sm:w-[100px]
+        md:w-[120px]
+        lg:w-[140px]
       "
       style={{
-        width:
-          typeof size === "number"
-            ? `${size}px`
-            : size || "clamp(120px, 12vw, 200px)",
+        // width:
+        //   typeof size === "number"
+        //     ? `${size}px`
+        //     : size || "clamp(120px, 12vw, 200px)",
         transform: `rotate(${rotate}deg)`,
       }}
     />
