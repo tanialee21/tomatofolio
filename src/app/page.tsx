@@ -25,6 +25,7 @@ export default function Home() {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const wrapperRef = useRef<HTMLDivElement | null>(null);
   const [showBigTomato, setShowBigTomato] = useState(false);
+  const [initialized, setInitialized] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
@@ -49,7 +50,11 @@ export default function Home() {
       if (wrapperRef.current) {
         wrapperRef.current.style.setProperty("--t-scale", String(scale));
       }
+
+      setInitialized(true);
     };
+
+    onScroll();
 
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -63,6 +68,8 @@ export default function Home() {
         ref={wrapperRef}
         className="fixed z-10 tomato-wrapper"
         style={{
+          opacity: initialized ? 1 : 0,
+          transition: "opacity 0.3s ease",
           width: "clamp(300px, 120vw, 700px)",
           height: "clamp(300px, 130vw, 700px)",
           top: "50%",
@@ -146,7 +153,7 @@ export default function Home() {
               {nutritionalFacts.title}
             </h1>
 
-            <div className="text-[11px] sm:text-[11px] md:text-[12px] text-center -mt-2 mb-1 flex justify-center gap-1">
+            <div className="text-[10px] sm:text-[10px] md:text-[12px] text-center -mt-2 mb-1 flex justify-center gap-1">
               <span className="font-semibold">
                 {nutritionalFacts.description}
               </span>
@@ -229,8 +236,12 @@ export default function Home() {
               (nutrient: Section, index: number) => (
                 <div key={index} className="border-b border-gray-400 px-2 py-1">
                   <div className="flex justify-between">
-                    <span className="text-[12px] sm:text-[12px] md:text-sm font-black">{nutrient.label}</span>
-                    <span className="text-[12px] sm:text-[12px] md:text-xs font-bold">{nutrient.date}</span>
+                    <span className="text-[11px] sm:text-[11px] md:text-sm font-black">
+                      {nutrient.label}
+                    </span>
+                    <span className="text-[11px] sm:text-[11px] md:text-xs font-bold">
+                      {nutrient.date}
+                    </span>
                   </div>
 
                   <div className="flex justify-between items-start">
@@ -255,8 +266,12 @@ export default function Home() {
               (nutrient: Section, index: number) => (
                 <div key={index} className="border-b border-gray-400 px-2 py-1">
                   <div className="flex justify-between">
-                    <span className="text-[11px] sm:text-[11px] md:text-xs">{nutrient.date}</span>
-                    <span className="text-[11px] sm:text-[11px] md:text-sm font-bold">{nutrient.label}</span>
+                    <span className="text-[10px] sm:text-[10px] md:text-xs">
+                      {nutrient.date}
+                    </span>
+                    <span className="text-[10px] sm:text-[10px] md:text-sm font-bold">
+                      {nutrient.label}
+                    </span>
                   </div>
                 </div>
               )
@@ -279,7 +294,7 @@ export default function Home() {
 
           {/* Footer */}
           <div className="border-t border-black px-2 py-1 -mb-4">
-            <p className="text-[11px] sm:text-[11px] md:text-xs text-center font-semibold">
+            <p className="text-[10px] sm:text-[10px] md:text-xs text-center font-semibold">
               {nutritionalFacts.disclaimer}
             </p>
           </div>
