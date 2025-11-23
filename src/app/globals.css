@@ -27,3 +27,37 @@ body {
   font-family: var(--font-body);
   position: relative;
 }
+
+/* body::before {
+  content: "";
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-80%, -32%) rotate(-17deg);
+  width: 1100px;
+  height: 1100px;
+  background-image: url("/tomato2.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  top: 65%;
+  right: -30%;
+  transform: translateY(-50%) scaleX(-1) rotate(-12deg);
+  width: 1300px;
+  height: 1300px;
+  background-image: url("/tomato2.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 1;
+  pointer-events: none;
+  z-index: 0;
+} */
