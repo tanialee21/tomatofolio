@@ -1,2 +1,2 @@
-# factitious
-nutritional facts!
+# yummy 🍅
+portfolio developed with next.js + react + and lots of tomatoes ^_^
